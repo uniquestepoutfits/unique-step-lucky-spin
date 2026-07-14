@@ -62,3 +62,52 @@ function drawWheel() {
 }
 
 drawWheel();
+function spinWheel(){
+
+    if(spinning) return;
+
+    spinning = true;
+
+    const prizeIndex = Math.floor(Math.random()*prizes.length);
+
+    const stopAngle = (Math.PI * 2) - (prizeIndex * arc) - (arc / 2);
+
+    const finalRotation = (Math.PI * 12) + stopAngle;
+
+    const duration = 5000;
+
+    const start = performance.now();
+
+    const startRotation = rotation;
+
+    function animate(now){
+
+        const progress = Math.min((now-start)/duration,1);
+
+        const ease = 1-Math.pow(1-progress,3);
+
+        rotation = startRotation + (finalRotation * ease);
+
+        drawWheel();
+
+        if(progress < 1){
+
+            requestAnimationFrame(animate);
+
+        }else{
+
+            spinning=false;
+
+            setTimeout(()=>{
+
+                alert("🎉 Congratulations!\n\nYou Won:\n\n"+prizes[prizeIndex]);
+
+            },200);
+
+        }
+
+    }
+
+    requestAnimationFrame(animate);
+
+}
