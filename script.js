@@ -1,37 +1,64 @@
-
-const wheel = document.getElementById("wheel");
+const canvas = document.getElementById("wheelCanvas");
+const ctx = canvas.getContext("2d");
 
 const prizes = [
-    "💸 ৳20 Cashback",
-    "💸 ৳30 Cashback",
-    "💸 ৳40 Cashback",
-    "💸 ৳50 Cashback",
-    "💸 ৳100 Cashback",
-    "🎟️ ৳150 Voucher",
-    "🚚 Free Delivery",
-    "👕 Free Premium Shirt"
+  "৳20 Cashback",
+  "৳30 Cashback",
+  "৳40 Cashback",
+  "৳50 Cashback",
+  "৳100 Cashback",
+  "৳150 Voucher",
+  "Free Delivery",
+  "Free Premium Shirt"
 ];
 
+const colors = [
+  "#FFD700",
+  "#111111",
+  "#FFD700",
+  "#111111",
+  "#FFD700",
+  "#111111",
+  "#FFD700",
+  "#111111"
+];
+
+const total = prizes.length;
+const arc = (Math.PI * 2) / total;
+
+let rotation = 0;
 let spinning = false;
 
-function spinWheel(){
+function drawWheel() {
 
-    if(spinning) return;
+    ctx.clearRect(0,0,320,320);
 
-    spinning = true;
+    for(let i=0;i<total;i++){
 
-    const randomIndex = Math.floor(Math.random()*prizes.length);
+        const angle = i * arc + rotation;
 
-    const degree = 3600 + (randomIndex * 45);
+        ctx.beginPath();
+        ctx.moveTo(160,160);
+        ctx.arc(160,160,150,angle,angle+arc);
+        ctx.closePath();
 
-    wheel.style.transform = `rotate(-${degree}deg)`;
+        ctx.fillStyle = colors[i];
+        ctx.fill();
 
-    setTimeout(()=>{
+        ctx.save();
 
-        alert("🎉 Congratulations!\n\nYou won:\n\n"+prizes[randomIndex]);
+        ctx.translate(160,160);
+        ctx.rotate(angle + arc/2);
 
-        spinning = false;
+        ctx.fillStyle = colors[i]=="#FFD700" ? "#000" : "#FFD700";
 
-    },5000);
+        ctx.font="bold 13px Arial";
+        ctx.textAlign="right";
 
+        ctx.fillText(prizes[i],135,5);
+
+        ctx.restore();
+    }
 }
+
+drawWheel();
