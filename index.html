@@ -1,38 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unique Step Outfits | Lucky Spin</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Step Outfits | Lucky Spin V2</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-    <img src="logo.png" class="logo">
+<img src="logo.png" class="logo" alt="Logo">
 
-    <h1>🎉 Lucky Cashback Spin</h1>
+<h1>Lucky Cashback Spin</h1>
 
-    <p class="subtitle">
-        Spin the wheel and win exciting cashback rewards.
-    </p>
+<p class="subtitle">
+Spin & Win Your Reward
+</p>
 
-    <div class="wheel-box">
+<canvas id="wheelCanvas" width="320" height="320"></canvas>
 
-        <div id="wheel">
-            <div class="center-btn" onclick="spinWheel()">
-                SPIN
-            </div>
-        </div>
+<button class="spin-btn" onclick="spinWheel()">
+SPIN NOW
+</button>
 
-    </div>
+<br>
 
-    <button class="claim-btn">
-        Claim via WhatsApp
-    </button>
+<button class="claim-btn">
+Claim via WhatsApp
+</button>
 
 </div>
 
