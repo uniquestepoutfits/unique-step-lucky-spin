@@ -157,10 +157,16 @@ document.getElementById("popup").style.display = "flex";
 
     document.getElementById("popup").style.display = "none";
 
+    const message =
+`Hello Unique Step Outfits,
+
+I won: ${lastPrize}
+
+Coupon Code: ${lastCoupon}`;
+
     window.open(
-        "https://wa.me/8801338688859",
+        "https://wa.me/8801338688859?text=" + encodeURIComponent(message),
         "_blank"
     );
 
 }
-
