@@ -141,7 +141,7 @@ document.getElementById("popup").style.display = "flex";
 
     requestAnimationFrame(animate);
 
-}function closePopup()function generateCoupon() {
+}function generateCoupon() {
 
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
@@ -152,7 +152,9 @@ document.getElementById("popup").style.display = "flex";
     }
 
     return code;
-}{
+}
+
+function closePopup() {
 
     document.getElementById("popup").style.display = "none";
 
