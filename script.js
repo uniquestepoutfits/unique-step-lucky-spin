@@ -26,7 +26,8 @@ const colors = [
 const total = prizes.length;
 const arc = (Math.PI * 2) / total;
 
-let rotation = 0;
+let rotation = 0;let lastPrize = "";
+let lastCoupon = "";
 let spinning = false;
 
 function drawWheel() {
