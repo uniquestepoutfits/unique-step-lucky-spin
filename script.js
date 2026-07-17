@@ -152,10 +152,15 @@ document.getElementById("popup").style.display = "flex";
     }
 
     return code;
-}
-
-function closePopup() {
+ 
+}function closePopup() {
 
     document.getElementById("popup").style.display = "none";
 
+    window.open(
+        "https://wa.me/8801XXXXXXXXX",
+        "_blank"
+    );
+
 }
+
