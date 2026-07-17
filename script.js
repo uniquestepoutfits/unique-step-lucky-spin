@@ -1,4 +1,4 @@
-const canvas = document.getElementById("wheelCanvas");
+ const canvas = document.getElementById("wheelCanvas");
 const ctx = canvas.getContext("2d");
 
 const prizes = [
@@ -125,7 +125,18 @@ document.getElementById("popup").style.display = "flex";;
 
     requestAnimationFrame(animate);
 
-}function closePopup(){
+}function closePopup()function generateCoupon() {
+
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let code = "USO-";
+
+    for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    return code;
+}{
 
     document.getElementById("popup").style.display = "none";
 
