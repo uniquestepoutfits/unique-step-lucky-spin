@@ -9,7 +9,7 @@ const prizes = [
   "৳100 Cashback",
   "৳150 Voucher",
   "Free Delivery",
-  "Free Premium Shirt"
+  "1 Piece Shirt Free"
 ];
 
 const colors = [
@@ -66,9 +66,21 @@ function spinWheel(){
 
     if(spinning) return;
 
-    spinning = true;
+    spinning = true;const prizePool = [
+0,0,0,0,0,0,0,0,0,
+1,1,1,1,
+2,2,2,
+3,3,
+4,
+5,
+6,
+7
+];
 
-    const prizeIndex = Math.floor(Math.random()*prizes.length);
+const prizeIndex =
+prizePool[Math.floor(Math.random()*prizePool.length)];
+
+    
 
     const stopAngle = (Math.PI * 2) - (prizeIndex * arc) - (arc / 2);
 
