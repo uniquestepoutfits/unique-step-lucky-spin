@@ -113,7 +113,8 @@ prizePool[Math.floor(Math.random()*prizePool.length)];
 
             setTimeout(()=>{
 
-               const coupon = generateCoupon();
+               const coupon = generateCoupon();lastPrize = prizes[prizeIndex];
+lastCoupon = coupon;
 
 document.getElementById("prizeText").innerHTML =
 `
