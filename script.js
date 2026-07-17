@@ -112,10 +112,24 @@ prizePool[Math.floor(Math.random()*prizePool.length)];
 
             setTimeout(()=>{
 
-               document.getElementById("prizeText").innerHTML =
-"You Won <br><br><b>" + prizes[prizeIndex] + "</b>";
+               const coupon = generateCoupon();
 
-document.getElementById("popup").style.display = "flex";;
+document.getElementById("prizeText").innerHTML =
+`
+🎉 <b>Congratulations!</b><br><br>
+
+Prize:<br>
+<b>${prizes[prizeIndex]}</b>
+
+<br><br>
+
+Coupon:<br>
+<b style="color:#FFD700;font-size:22px">
+${coupon}
+</b>
+`;
+
+document.getElementById("popup").style.display = "flex";
 
             },200);
 
