@@ -100,7 +100,10 @@ function spinWheel(){
 
             setTimeout(()=>{
 
-                alert("🎉 Congratulations!\n\nYou Won:\n\n"+prizes[prizeIndex]);
+               document.getElementById("prizeText").innerHTML =
+"You Won <br><br><b>" + prizes[prizeIndex] + "</b>";
+
+document.getElementById("popup").style.display = "flex";;
 
             },200);
 
@@ -109,5 +112,9 @@ function spinWheel(){
     }
 
     requestAnimationFrame(animate);
+
+}function closePopup(){
+
+    document.getElementById("popup").style.display = "none";
 
 }
