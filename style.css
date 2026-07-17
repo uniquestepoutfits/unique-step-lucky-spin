@@ -90,23 +90,19 @@ h1{
     padding:15px 30px;
     border-radius:30px;
     font-size:18px;
-    font-weight:bold;
-}/* Pointer */
+    font-weight:
+}.pointer{
+    position: relative;
+    margin: -170px auto 140px;
+    width: 0;
+    height: 0;
 
-.wheel-box{
-    position:relative;
-}
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 30px solid #FFD700;
 
-.wheel-box::before{
-    content:"";
-    position:absolute;
-    top:-18px;
-    left:50%;
-    transform:translateX(-50%);
-    border-left:15px solid transparent;
-    border-right:15px solid transparent;
-    border-top:35px solid #FFD700;
-    z-index:100;
+    filter: drop-shadow(0 0 10px rgba(255,215,0,.8));
+    z-index: 999;
 }
 
 /* Spin Button */
