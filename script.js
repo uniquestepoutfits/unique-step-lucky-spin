@@ -62,12 +62,7 @@ function drawWheel() {
     }
 }
 
-drawWheel();
-function spinWheel(){
-
-    if(spinning) return;
-
-    spinning = true;function getPrize() {
+drawWheel();function getPrize() {
 
     const r = Math.random() * 100;
 
@@ -82,9 +77,15 @@ function spinWheel(){
     return 7;                  // 1 Piece Shirt Free
 }
 
-    
+function spinWheel(){
 
-const stopAngle = -(prizeIndex * arc) + (arc / 2);
+    if (spinning) return;
+
+    spinning = true;
+
+    const prizeIndex = getPrize();
+
+    const stopAngle = -(prizeIndex * arc) + (arc / 2);
 
     const finalRotation = (Math.PI * 12) + stopAngle;
 
@@ -93,6 +94,9 @@ const stopAngle = -(prizeIndex * arc) + (arc / 2);
     const start = performance.now();
 
     const startRotation = rotation;
+
+
+
 
     function animate(now){
 
