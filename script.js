@@ -62,20 +62,21 @@ function drawWheel() {
     }
 }
 
+
 drawWheel();
 function getPrize() {
 
     const r = Math.random() * 100;
 
-    if (r < 45) return 0;      // ৳20 Cashback
-    if (r < 70) return 1;      // ৳30 Cashback
-    if (r < 85) return 2;      // ৳40 Cashback
-    if (r < 93) return 3;      // ৳50 Cashback
-    if (r < 97) return 4;      // ৳100 Cashback
-    if (r < 99) return 5;      // ৳150 Voucher
-    if (r < 99.8) return 6;    // Free Delivery
+    if (r < 50) return 0;      // ৳20 Cashback (50%)
+    if (r < 75) return 1;      // ৳30 Cashback (25%)
+    if (r < 88) return 2;      // ৳40 Cashback (13%)
+    if (r < 95) return 3;      // ৳50 Cashback (7%)
+    if (r < 98) return 4;      // ৳100 Cashback (3%)
+    if (r < 99) return 5;      // ৳150 Voucher (1%)
+    if (r < 99.5) return 6;    // Free Delivery (0.5%)
 
-    return 7;                  // 1 Piece Shirt Free
+    return 7;                  // 1 Piece Shirt Free (0.5%)
 }
 
 function spinWheel(){
