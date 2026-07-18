@@ -113,7 +113,10 @@ const stopAngle = -(prizeIndex * arc) + (arc / 2);
 
             setTimeout(()=>{
 
-               const coupon = generateCoupon();lastPrize = prizes[prizeIndex];
+               const coupon = generateCoupon();
+             const realPrize = (prizeIndex + 2) % prizes.length;
+
+lastPrize = prizes[realPrize];
 lastCoupon = coupon;
 
 document.getElementById("prizeText").innerHTML =
