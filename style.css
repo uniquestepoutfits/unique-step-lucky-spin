@@ -210,11 +210,14 @@ color:#000;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
-}..pointer{
+    .pointer{
     position: relative;
-    margin: 0 auto -20px;
+    margin: -130px auto 100px;
     width: 0;
     height: 0;
+}
+
+}.
 
     border-left: 18px solid transparent;
     border-right: 18px solid transparent;
