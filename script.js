@@ -119,8 +119,9 @@ const stopAngle = -(prizeIndex * arc) - (arc / 2);
             requestAnimationFrame(animate);
 
         }else{
-
-            spinning=false;
+rotation = finalRotation % (Math.PI * 2);
+         
+            spinning = false;
 
             setTimeout(()=>{
 
