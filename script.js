@@ -62,7 +62,8 @@ function drawWheel() {
     }
 }
 
-drawWheel();function getPrize() {
+drawWheel();
+function getPrize() {
 
     const r = Math.random() * 100;
 
