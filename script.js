@@ -36,7 +36,7 @@ function drawWheel() {
 
     for(let i=0;i<total;i++){
 
-        const angle = i * arc + rotation;
+        const angle = i * arc + rotation - Math.PI / 2;
 
         ctx.beginPath();
         ctx.moveTo(160,160);
