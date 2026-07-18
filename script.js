@@ -83,7 +83,7 @@ prizePool[Math.floor(Math.random()*prizePool.length)];
 
     
 
-    const stopAngle = (Math.PI * 2) - (prizeIndex * arc) - (arc / 2);
+   const stopAngle = -(prizeIndex * arc) - (arc / 2);
 
     const finalRotation = (Math.PI * 12) + stopAngle;
 
