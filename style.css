@@ -93,7 +93,7 @@ h1{
     font-weight:
 }.pointer{
     position: relative;
-    margin: -170px auto 140px;
+    margin: 0 auto -25px;
     width: 0;
     height: 0;
 
