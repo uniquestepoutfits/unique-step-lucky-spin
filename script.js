@@ -124,7 +124,7 @@ document.getElementById("prizeText").innerHTML =
 🎉 <b>Congratulations!</b><br><br>
 
 Prize:<br>
-<b>${prizes[prizeIndex]}</b>
+<b>${prizes[realPrize]}</b>
 
 <br><br>
 
