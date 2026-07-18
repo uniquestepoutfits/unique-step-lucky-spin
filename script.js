@@ -67,19 +67,20 @@ function spinWheel(){
 
     if(spinning) return;
 
-    spinning = true;const prizePool = [
-0,0,0,0,0,0,0,0,0,
-1,1,1,1,
-2,2,2,
-3,3,
-4,
-5,
-6,
-7
-];
+    spinning = true;function getPrize() {
 
-const prizeIndex =
-prizePool[Math.floor(Math.random()*prizePool.length)];
+    const r = Math.random() * 100;
+
+    if (r < 45) return 0;      // ৳20 Cashback
+    if (r < 70) return 1;      // ৳30 Cashback
+    if (r < 85) return 2;      // ৳40 Cashback
+    if (r < 93) return 3;      // ৳50 Cashback
+    if (r < 97) return 4;      // ৳100 Cashback
+    if (r < 99) return 5;      // ৳150 Voucher
+    if (r < 99.8) return 6;    // Free Delivery
+
+    return 7;                  // 1 Piece Shirt Free
+}
 
     
 
