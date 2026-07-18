@@ -87,9 +87,13 @@ function spinWheel(){
 
     const prizeIndex = getPrize();
 
-
 const stopAngle = -(prizeIndex * arc) - (arc / 2);
-    const finalRotation = (Math.PI * 12) + stopAngle;
+ 
+ const finalRotation = startRotation + (Math.PI * 12) + stopAngle;
+ 
+
+ 
+    
 
     const duration = 5000;
 
