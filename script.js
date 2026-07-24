@@ -1,70 +1,94 @@
- const canvas = document.getElementById("wheelCanvas");
+const canvas = document.getElementById("wheelCanvas");
 const ctx = canvas.getContext("2d");
 
+// ==========================
+// PRIZES
+// ==========================
+
 const prizes = [
-  "৳20 Cashback",
-  "৳30 Cashback",
-  "৳40 Cashback",
-  "৳50 Cashback",
-  "৳100 Cashback",
-  "৳150 Voucher",
-  "Free Delivery",
-  "1 Piece Shirt Free"
+    "৳20 Cashback",
+    "৳30 Cashback",
+    "৳40 Cashback",
+    "৳50 Cashback",
+    "৳100 Cashback",
+    "৳150 Voucher",
+    "Free Delivery",
+    "1 Piece Shirt Free"
 ];
 
 const colors = [
-  "#FFD700",
-  "#111111",
-  "#FFD700",
-  "#111111",
-  "#FFD700",
-  "#111111",
-  "#FFD700",
-  "#111111"
+    "#FFD700",
+    "#111111",
+    "#FFD700",
+    "#111111",
+    "#FFD700",
+    "#111111",
+    "#FFD700",
+    "#111111"
 ];
 
 const total = prizes.length;
 const arc = (Math.PI * 2) / total;
 
-let rotation = 0;let lastPrize = "";
-let lastCoupon = "";
+// ==========================
+// ENGINE
+// ==========================
+
+let rotation = 0;
 let spinning = false;
+
+let lastPrize = "";
+let lastCoupon = "";
+
+let spinCount = 0;
+// ==========================
+// DRAW WHEEL
+// ==========================
 
 function drawWheel() {
 
-    ctx.clearRect(0,0,320,320);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for(let i=0;i<total;i++){
+    for (let i = 0; i < total; i++) {
 
-        const angle = i * arc + rotation - Math.PI / 2;
+        const startAngle = i * arc + rotation - Math.PI / 2;
+        const endAngle = startAngle + arc;
 
+        // Slice
         ctx.beginPath();
-        ctx.moveTo(160,160);
-        ctx.arc(160,160,150,angle,angle+arc);
+        ctx.moveTo(160, 160);
+        ctx.arc(160, 160, 150, startAngle, endAngle);
         ctx.closePath();
 
         ctx.fillStyle = colors[i];
         ctx.fill();
 
+        // Border
+        ctx.strokeStyle = "#FFD700";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Text
         ctx.save();
 
-        ctx.translate(160,160);
-        ctx.rotate(angle + arc/2);
+        ctx.translate(160, 160);
+        ctx.rotate(startAngle + arc / 2);
 
-        ctx.fillStyle = colors[i]=="#FFD700" ? "#000" : "#FFD700";
+        ctx.fillStyle = (colors[i] === "#FFD700") ? "#000" : "#FFD700";
+        ctx.font = "bold 13px Arial";
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
 
-        ctx.font="bold 13px Arial";
-        ctx.textAlign="right";
-
-        ctx.fillText(prizes[i],135,5);
+        ctx.fillText(prizes[i], 135, 0);
 
         ctx.restore();
     }
 }
 
-
 drawWheel();
-let spinCount = 0;
+// ==========================
+// PRIZE ENGINE
+// ==========================
 
 function getPrize() {
 
@@ -87,109 +111,122 @@ function getPrize() {
 
     return 6;                  // Free Delivery
 }
-function spinWheel(){
 
-    if (spinning) return;
+// ==========================
+// COUPON
+// ==========================
 
-    spinning = true;
-
-    const prizeIndex = getPrize();
-
-const stopAngle = -(prizeIndex * arc) - (arc / 2);
- 
- const finalRotation = startRotation + (Math.PI * 12) + stopAngle;
- 
-
- 
-    
-
-    const duration = 5000;
-
-    const start = performance.now();
-
-    const startRotation = rotation;
-
-
-
-
-    function animate(now){
-
-        const progress = Math.min((now-start)/duration,1);
-
-        const ease = 1-Math.pow(1-progress,3);
-
-        rotation = startRotation + (finalRotation * ease);
-
-        drawWheel();
-
-        if(progress < 1){
-
-            requestAnimationFrame(animate);
-
-        }else{
-rotation = finalRotation % (Math.PI * 2);
-         
-            spinning = false;
-
-            setTimeout(()=>{
-
-               const coupon = generateCoupon();
-             const realPrize = prizeIndex;
-
-lastPrize = prizes[realPrize];
-lastCoupon = coupon;
-
-document.getElementById("prizeText").innerHTML =
-`
-🎉 <b>Congratulations!</b><br><br>
-
-Prize:<br>
-<b>${prizes[realPrize]}</b>
-
-<br><br>
-
-Coupon:<br>
-<b style="color:#FFD700;font-size:22px">
-${coupon}
-</b>
-`;
-
-document.getElementById("popup").style.display = "flex";
-
-            },200);
-
-        }
-
-    }
-
-    requestAnimationFrame(animate);
-
-}function generateCoupon() {
+function generateCoupon() {
 
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
     let code = "USO-";
 
     for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
+        code += chars[Math.floor(Math.random() * chars.length)];
     }
 
     return code;
- 
-}function closePopup() {
+}
+// ==========================
+// SPIN ENGINE
+// ==========================
+
+function spinWheel() {
+
+    if (spinning) return;
+
+    spinning = true;
+
+    const spinBtn = document.getElementById("spinBtn");
+    spinBtn.disabled = true;
+
+    const prizeIndex = getPrize();
+
+    // Pointer is at top (12 o'clock)
+    const targetAngle = (Math.PI * 2) - (prizeIndex * arc) - (arc / 2);
+
+    const extraSpins = 8;
+    const finalRotation = rotation + (extraSpins * Math.PI * 2) + targetAngle;
+
+    const startRotation = rotation;
+    const duration = 5000;
+    const startTime = performance.now();
+
+    function animate(now) {
+
+        const progress = Math.min((now - startTime) / duration, 1);
+
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        rotation = startRotation + (finalRotation - startRotation) * ease;
+
+        drawWheel();
+
+        if (progress < 1) {
+
+            requestAnimationFrame(animate);
+
+        } else {
+
+            rotation = finalRotation % (Math.PI * 2);
+
+            spinning = false;
+            spinBtn.disabled = false;
+
+            const coupon = generateCoupon();
+
+            lastPrize = prizes[prizeIndex];
+            lastCoupon = coupon;
+
+            document.getElementById("prizeText").innerHTML =
+            `
+            🎉 <b>Congratulations!</b><br><br>
+
+            Prize:<br>
+            <b>${lastPrize}</b>
+
+            <br><br>
+
+            Coupon:<br>
+
+            <b style="color:#FFD700;font-size:22px;">
+            ${coupon}
+            </b>
+            `;
+
+            document.getElementById("popup").style.display = "flex";
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+// ==========================
+// WHATSAPP
+// ==========================
+
+function closePopup() {
 
     document.getElementById("popup").style.display = "none";
 
-    const message =
+    const msg =
 `Hello Unique Step Outfits,
 
 I won: ${lastPrize}
 
-Coupon Code: ${lastCoupon}`;
+Coupon: ${lastCoupon}`;
 
     window.open(
-        "https://wa.me/8801338688859?text=" + encodeURIComponent(message),
+        "https://wa.me/8801338688859?text=" +
+        encodeURIComponent(msg),
         "_blank"
     );
-
 }
+
+
+
+
+
+
+
