@@ -176,7 +176,9 @@ function spinWheel() {
 
             const coupon = generateCoupon();
 
-            lastPrize = prizes[prizeIndex];
+           const realPrize = (prizeIndex + 2) % total;
+
+lastPrize = prizes[realPrize]; 
             lastCoupon = coupon;
 
             document.getElementById("prizeText").innerHTML =
