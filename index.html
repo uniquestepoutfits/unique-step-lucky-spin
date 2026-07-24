@@ -1,63 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unique Step Outfits | Lucky Spin V2</title>
+
+<title>Unique Step Outfits | Lucky Spin V3</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
-<img src="logo.png" class="logo" alt="Logo">
+    <!-- Logo -->
+    <img src="logo.png" class="logo" alt="Unique Step Outfits">
 
-<h1>Lucky Cashback Spin</h1>
+    <!-- Title -->
+    <h1>Lucky Cashback Spin</h1>
 
-<p class="subtitle">
-Spin & Win Your Reward
-</p>
+    <p class="subtitle">
+        Spin & Win Amazing Rewards
+    </p>
 
-<div class="pointer">
+    <!-- Wheel -->
+    <div class="wheel-wrapper">
+
+        <div class="pointer"></div>
+
+        <canvas
+            id="wheelCanvas"
+            width="320"
+            height="320">
+        </canvas>
+
+    </div>
+
+    <!-- Spin Button -->
+    <button
+        id="spinBtn"
+        class="spin-btn"
+        onclick="spinWheel()">
+
+        SPIN NOW
+
+    </button>
 
 </div>
 
-<canvas id="wheelCanvas" width="320" height="320"></canvas><button class="spin-btn" onclick="spinWheel()">
-SPIN NOW
-</button>
+<!-- Winner Popup -->
 
-<br>
+<div id="popup" class="popup">
 
-<button class="claim-btn">
-Claim via WhatsApp
-</button>
-
-</div>
-
-
-
-
-
-
-
-<div class="popup" id="popup">
     <div class="popup-box">
+
         <h2>🎉 Congratulations!</h2>
 
-        <p id="prizeText">
-            You won...
-        </p>
+        <p id="prizeText"></p>
 
-        <button class="close-btn" onclick="closePopup()">
-            Claim Reward
+        <button
+            class="close-btn"
+            onclick="closePopup()">
+
+            Claim via WhatsApp
+
         </button>
-    </div>
-</div>
 
+    </div>
+
+</div>
 
 <script src="script.js"></script>
 
 </body>
 </html>
+
+            
